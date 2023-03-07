@@ -16,7 +16,9 @@
     "postinstall": "npx simple-git-hooks"
   },
   "dependencies": {
+    "@types/zrender": "^4.0.3",
     "@unocss/reset": "^0.50.3",
+    "@vue-macros/reactivity-transform": "^0.2.4",
     "@vueuse/core": "^9.13.0",
     "@vueuse/head": "^1.1.15",
     "nprogress": "^0.2.0",
@@ -24,7 +26,8 @@
     "vue": "^3.2.47",
     "vue-demi": "^0.13.11",
     "vue-i18n": "^9.2.2",
-    "vue-router": "^4.1.6"
+    "vue-router": "^4.1.6",
+    "zrender": "^5.4.1"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.36.0",
