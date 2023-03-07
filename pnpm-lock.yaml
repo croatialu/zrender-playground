@@ -19,6 +19,7 @@ specifiers:
   cypress: ^12.7.0
   eslint: ^8.35.0
   eslint-plugin-cypress: ^2.12.1
+  hotkeys-js: ^3.10.1
   https-localhost: ^4.7.1
   lint-staged: ^13.1.2
   markdown-it-link-attributes: ^4.0.1
@@ -58,13 +59,14 @@ dependencies:
   '@vue-macros/reactivity-transform': 0.2.4_vue@3.2.47
   '@vueuse/core': 9.13.0_vue@3.2.47
   '@vueuse/head': 1.1.15_vue@3.2.47
+  hotkeys-js: 3.10.1
   nprogress: 0.2.0
   pinia: 2.0.32_hmuptsblhheur2tugfgucj7gc4
   vue: 3.2.47
   vue-demi: 0.13.11_vue@3.2.47
   vue-i18n: 9.2.2_vue@3.2.47
   vue-router: 4.1.6_vue@3.2.47
-  zrender: 5.4.1
+  zrender: link:node_modules/zrender
 
 devDependencies:
   '@antfu/eslint-config': 0.36.0_ycpbpc6yetojsgtrx3mwntkhsu
@@ -6098,6 +6100,10 @@ packages:
       lru-cache: 7.13.1
     dev: true
 
+  /hotkeys-js/3.10.1:
+    resolution: {integrity: sha512-mshqjgTqx8ee0qryHvRgZaZDxTwxam/2yTQmQlqAWS3+twnq1jsY9Yng9zB7lWq6WRrjTbTOc7knNwccXQiAjQ==}
+    dev: false
+
   /hpack.js/2.1.6:
     resolution: {integrity: sha512-zJxVehUdMGIKsRaNt7apO2Gqp0BdqW5yaiGHXXmbpvxgBYVZnAql+BJb4RO5ad2MgpbZKn5G6nMnegrH1FcNYQ==}
     dependencies:
@@ -9159,10 +9165,6 @@ packages:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
     dev: true
 
-  /tslib/2.3.0:
-    resolution: {integrity: sha512-N82ooyxVNm6h1riLCoyS9e3fuJ3AMG2zIZs2Gd1ATcSFjSA23Q0fzjjZeh0jbJvWVDZ0cJT8yaNNaaXHzueNjg==}
-    dev: false
-
   /tslib/2.4.0:
     resolution: {integrity: sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==}
     dev: true
@@ -10481,9 +10483,3 @@ packages:
 
   /zhead/2.0.4:
     resolution: {integrity: sha512-V4R94t3ifk9AURym6OskbKcnowzgp5Z88tkoL/NF67vyryNxC62u6mx5F1Ux4oh4+YN7FFmKYEyWy6m5kfPH6g==}
-
-  /zrender/5.4.1:
-    resolution: {integrity: sha512-M4Z05BHWtajY2241EmMPHglDQAJ1UyHQcYsxDNzD9XLSkPDqMq4bB28v9Pb4mvHnVQ0GxyTklZ/69xCFP6RXBA==}
-    dependencies:
-      tslib: 2.3.0
-    dev: false

@@ -21,6 +21,7 @@
     "@vue-macros/reactivity-transform": "^0.2.4",
     "@vueuse/core": "^9.13.0",
     "@vueuse/head": "^1.1.15",
+    "hotkeys-js": "^3.10.1",
     "nprogress": "^0.2.0",
     "pinia": "^2.0.32",
     "vue": "^3.2.47",

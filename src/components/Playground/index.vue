@@ -1,12 +1,15 @@
 <script lang="ts" setup>
 import * as zrender from 'zrender'
-import Transformable from 'zrender/lib/core/Transformable'
+import hotkey from 'hotkeys-js'
 import { getStartPoint } from '../Playground/utils'
 import { CELL_HEIGHT, CELL_WIDTH, COL_CARD_COUNT, LINE_WIDTH, ROW_CARD_COUNT } from '../Playground/constant'
+import Roamable from './Roamable'
 const playgroundRef = ref(null)
 
-let zr: ReturnType<typeof zrender.init> | null = null
+let zr: ReturnType<typeof zrender.init>
 
+const rootGroup = new zrender.Group({
+})
 const drawRect = () => {
   if (!zr)
     return
@@ -33,6 +36,7 @@ const drawRect = () => {
         stroke: lineColor,
       },
     })
+    line.cursor = 'default'
     grid.add(line)
   }
 
@@ -51,6 +55,7 @@ const drawRect = () => {
         stroke: lineColor,
       },
     })
+    line.cursor = 'default'
     grid.add(line)
   }
 
@@ -72,7 +77,6 @@ const drawRect = () => {
         z: 2,
         // textContent: ,
       })
-
       const text = new zrender.Text({
         style: {
           text: '*',
@@ -84,6 +88,13 @@ const drawRect = () => {
         x: circle.shape.cx,
         y: circle.shape.cy,
       })
+
+      circle.name = 'Chess'
+
+      circle.states = {
+
+      }
+
       localCircleGroup.add(circle)
       localCircleGroup.add(text)
 
@@ -95,37 +106,66 @@ const drawRect = () => {
     }
   }
 
-  grid.setPosition([startX, startY])
+  //   grid.setPosition([startX, startY])
 
-  grid.attr('scaleX', 0.9)
-  grid.attr('scaleY', 0.9)
-  grid.attr('originX', width / 2)
-  grid.attr('originY', height / 2)
-
-  zr.add(grid)
+  rootGroup.add(grid)
 }
 
 onMounted(() => {
   zr = zrender.init(playgroundRef.value)
+  const rulerLength = 1000
+  rootGroup.add(new zrender.Line({
+    shape: {
+      x1: 0,
+      y1: -rulerLength,
 
-  zr.on('mousewheel', (e) => {
-    const delta = e.wheelDelta > 0 ? 0.1 : -0.1 // 根据滚轮方向计算缩放因子
-    const transformable = new Transformable()
-    // const point = zr.transformCoordToLocal() // 获取缩放中心点
-    // zr.setScale() // 缩放视图
-    const point = transformable.transformCoordToLocal(e.offsetX, e.offsetY)
-    transformable.setScale([delta, delta, point[0], point[1]])
-  })
-  drawRect()
+      x2: 0,
+      y2: rulerLength,
+    },
+    style: {
+      lineWidth: 3,
+      stroke: 'red',
+      lineDash: 'dashed',
+    },
+  }))
+
+  rootGroup.add(new zrender.Line({
+    shape: {
+      x1: -rulerLength,
+      y1: 0,
+      x2: rulerLength,
+      y2: 0,
+    },
+    style: {
+      lineWidth: 3,
+      stroke: 'red',
+      lineDash: 'dashed',
+    },
+  }))
+
+  const res = new Roamable(zr, rootGroup)
+
+  //   const drag = new Drag(zr, rootGroup)
+  //   drag.enable()
+  //   const zoom = new Zoom(zr, rootGroup)
+  //   zoom.enable()
+
+  //   drawRect()
+
+  zr.add(rootGroup)
 })
+
+hotkey.setScope('global')
 </script>
 
 <template>
-  <div
-    ref="playgroundRef"
-    class="playground container w-1000px h-1000px border border-light-400 border-width-2 rounded-4 mx-auto"
-  >
-    Playground123
+  <div>
+    <div
+      ref="playgroundRef"
+      class="playground container w-1000px h-1000px border border-light-400 border-width-2 rounded-4 mx-auto"
+    >
+      Playground123
+    </div>
   </div>
 </template>
 
