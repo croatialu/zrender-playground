@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import * as zrender from 'zrender'
+import Transformable from 'zrender/lib/core/Transformable'
 import { getStartPoint } from '../Playground/utils'
 import { CELL_HEIGHT, CELL_WIDTH, COL_CARD_COUNT, LINE_WIDTH, ROW_CARD_COUNT } from '../Playground/constant'
 const playgroundRef = ref(null)
@@ -88,9 +89,9 @@ const drawRect = () => {
 
       //   circle.setTextContent(text)
       grid.add(localCircleGroup)
-      grid.onmouseup = (e) => {
-        // console.log(e)
-      }
+    //   grid.onmouseup = (e) => {
+      // console.log(e)
+    //   }
     }
   }
 
@@ -107,6 +108,14 @@ const drawRect = () => {
 onMounted(() => {
   zr = zrender.init(playgroundRef.value)
 
+  zr.on('mousewheel', (e) => {
+    const delta = e.wheelDelta > 0 ? 0.1 : -0.1 // 根据滚轮方向计算缩放因子
+    const transformable = new Transformable()
+    // const point = zr.transformCoordToLocal() // 获取缩放中心点
+    // zr.setScale() // 缩放视图
+    const point = transformable.transformCoordToLocal(e.offsetX, e.offsetY)
+    transformable.setScale([delta, delta, point[0], point[1]])
+  })
   drawRect()
 })
 </script>
