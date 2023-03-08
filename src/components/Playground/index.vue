@@ -19,7 +19,7 @@ const drawRect = () => {
   const height = zr.getHeight() // 网格高度
   const lineColor = '#ccc' // 线条颜色
 
-  const { x: startX, y: startY, maxHeight, maxWidth } = getStartPoint({ width, height }, LINE_WIDTH)
+  const { maxHeight, maxWidth } = getStartPoint({ width, height }, LINE_WIDTH)
 
   for (let x = 0; x < ROW_CARD_COUNT; x++) {
     const localX = x * CELL_WIDTH + x * LINE_WIDTH + LINE_WIDTH / 2
@@ -143,14 +143,11 @@ onMounted(() => {
     },
   }))
 
-  const res = new Roamable(zr, rootGroup)
+  const roamable = new Roamable(zr, rootGroup)
 
-  //   const drag = new Drag(zr, rootGroup)
-  //   drag.enable()
-  //   const zoom = new Zoom(zr, rootGroup)
-  //   zoom.enable()
+  roamable.init()
 
-  //   drawRect()
+  drawRect()
 
   zr.add(rootGroup)
 })
